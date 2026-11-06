@@ -1,3 +1,6 @@
 /invitacion-version-*.html
 /assets/*.png
+!/assets/intro-white-envelope.png
+!/assets/intro-calligraphy.png
+!/assets/intro-wax-v.png
 /README.md

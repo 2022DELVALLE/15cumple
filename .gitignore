@@ -1,5 +1,8 @@
 # Local backups and source artwork are kept outside the published site.
 /invitacion-version-*.html
 /assets/*.png
+!/assets/intro-white-envelope.png
+!/assets/intro-calligraphy.png
+!/assets/intro-wax-v.png
 /optimize-v6.cjs
 /.vercel/

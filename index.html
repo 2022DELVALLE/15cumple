@@ -418,6 +418,66 @@
     .story.paused .butterfly,.story.paused .butterfly::before,.story.paused .butterfly::after { animation-play-state:paused; }
     @media (max-width:650px) { .hero-scene::before { width:calc(100vw - 28px); height:calc(100svh - 154px); }.hero-scene .butterfly:nth-child(1) { left:2%; top:19%; }.hero-scene .butterfly:nth-child(2) { right:2%; top:17%; }.hero-scene .butterfly:nth-child(3) { left:3%; bottom:22%; }.hero-scene .butterfly:nth-child(4) { right:3%; bottom:22%; } }
     @media (prefers-reduced-motion:reduce) { .butterfly-field { display:none; } }
+    /* Opening stationery: layered red envelopes and a white sealed invitation. */
+    .intro { isolation:isolate; background:#bd050c url('assets/intro-red-stationery.jpg') center / cover no-repeat; }
+    .intro::before,.intro::after { content:none; }
+    .intro .butterfly-field { display:none; }
+    .envelope-button { transform:rotate(-5deg); filter:none; }
+    .envelope-back,.envelope-front { border-radius:1px; }
+    .envelope-back { background: url('assets/intro-white-envelope.png') center / 118% 118% no-repeat; border:0; box-shadow:none; }
+    .envelope-back::before { content:none; }
+    .envelope-back::after { content:''; top:56%; width:clamp(57px,10vw,76px); height:clamp(57px,10vw,76px); border-radius:0; background:url('assets/intro-wax-v.png') center / contain no-repeat; box-shadow:none; }
+    .envelope-front { background:linear-gradient(145deg,#fff,#f9f9f8 72%,#eeecea); border:1px solid #e5e1dd; box-shadow:0 15px 22px #65000870,0 0 0 1px #ffffffa8; }
+    .envelope-front::before { inset:0; border:0; background:linear-gradient(31deg,transparent 49.6%,#dedbd8 50%,transparent 50.4%) left bottom/50% 58% no-repeat,linear-gradient(-31deg,transparent 49.6%,#dedbd8 50%,transparent 50.4%) right bottom/50% 58% no-repeat; }
+    .envelope-front::after { background:linear-gradient(25deg,#ddd8d22b,transparent 60%); }
+    .side-fold { background:linear-gradient(90deg,#f2f1ef,#fff 50%,#f2f1ef); }
+    .front-fold { background:linear-gradient(155deg,#f8f8f7,#fff 55%,#efedeb); filter:drop-shadow(0 -1px 1px #99928d52); }
+    .flap { background:linear-gradient(170deg,#fff,#f1f0ee 95%); filter:drop-shadow(0 2px 1px #aaa39c99); }
+    .envelope-art { position:absolute; z-index:6; left:-9%; top:-9%; width:118%; height:118%; object-fit:fill; transform:rotate(5deg); pointer-events:none; transition:opacity .18s; }
+    .app.opened .envelope-art { opacity:0; }
+    .envelope-date { position:absolute; z-index:7; top:15%; left:0; right:0; text-align:center; color:#b90410; font:italic clamp(.62rem,1.45vw,.78rem) var(--serif); letter-spacing:.17em; transition:opacity .3s; }
+    .envelope-title { z-index:7; top:76%; left:-2%; right:-2%; height:42%; color:#bd0610; text-shadow:none; transform:translateY(-50%) rotate(5deg); }
+    .envelope-title img { display:block; width:100%; height:100%; object-fit:contain; }
+    .app.opened .envelope-date { opacity:0; }
+    .seal { top:56%; width:clamp(49px,8vw,67px); height:clamp(49px,8vw,67px); border:3px solid #910009; color:#e9c879; background:radial-gradient(circle at 34% 27%,#f54a37,#cc000c 58%,#850007); box-shadow:0 4px 9px #6a00089c,inset 0 0 0 2px #fa7658,inset 0 0 0 4px #a5000a,0 0 0 2px #ffffff9c; text-shadow:0 1px 2px #6d0008; }
+    .envelope-button .ribbon { display:none; }
+    .open-hint { color:#fff; }
+    .open-hint::before,.open-hint::after { background:#ffffffad; }
+    @media (max-width:650px) { .envelope-button { width:min(82vw,410px); } }
+    /* Keep the photographed envelope as the only visible paper layer. */
+    .envelope-front { background:transparent; border:0; box-shadow:none; }
+    .envelope-front::before,.envelope-front::after { content:none; }
+    .envelope-front .side-fold,.envelope-front .front-fold,.envelope-front .flap { opacity:0; transition:opacity .4s ease; }
+    .envelope-front .letter { opacity:0; }
+    .app.opened .envelope-front .letter { opacity:1; }
+    .app.opened .envelope-front { background:linear-gradient(145deg,#fff,#f4f1ed); border:1px solid #e5e1dd; box-shadow:0 13px 23px #65000870; }
+    .app.opened .envelope-front .side-fold,.app.opened .envelope-front .front-fold,.app.opened .envelope-front .flap { opacity:1; }
+    .app.opened .envelope-front .flap { transform:rotateX(180deg); }
+    .app.turning .open-hint,.app.returning .open-hint,.app.opened .open-hint { visibility:hidden; }
+    .seal { width:clamp(57px,10vw,76px); height:clamp(57px,10vw,76px); border:0; border-radius:0; background:none; box-shadow:none; text-shadow:none; }
+    .seal img { display:block; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 3px 4px #59000680); }
+    .story[data-theme="red"] { background:#ae0009 url('assets/intro-red-stationery.jpg') center / cover no-repeat; }
+    .story[data-theme="red"] .red-waves { opacity:.16; }
+    .countdown-card .card-copy { inset:15% 9%; gap:13px; }
+    .countdown-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; width:100%; margin:10px 0 17px; }
+    .countdown-grid span { display:grid; gap:4px; padding:12px 4px; border:1px solid #d7070e55; background:#fffaf6d9; color:#6f090d; }
+    .countdown-grid strong { font:600 clamp(1.5rem,4.2vw,2.5rem)/1 var(--serif); color:#d7070e; font-variant-numeric:tabular-nums; }
+    .countdown-grid small { font:.58rem var(--sans); letter-spacing:.08em; text-transform:uppercase; }
+    .countdown-card .map-link { display:inline-block; margin-top:8px; padding:10px 18px; border:1px solid #d7070e; color:#a50009; background:#fff; text-decoration:none; font-size:.76rem; letter-spacing:.08em; }
+    .countdown-card .map-link:focus-visible { outline-color:#d7070e; }
+    .countdown-card .replay { margin-top:3px; padding:9px 16px; color:#a50009; border-color:#d7070e; background:#fffaf6; font-size:.58rem; }
+    @media (max-width:650px) {
+      .story[data-theme="red"] { background-position:center; }
+      .scene-card.scene-party,.scene-card.scene-family,.scene-card.scene-venue { background:transparent; }
+      .countdown-grid { gap:4px; }
+      .countdown-grid span { padding:9px 2px; }
+      .countdown-grid strong { font-size:clamp(1.3rem,7vw,1.8rem); }
+      .countdown-grid small { font-size:.48rem; }
+      .countdown-card .card-copy { inset:12% 8%; gap:6px; }
+      .countdown-card .card-note { margin:4px 0 0; font-size:.76rem; }
+      .countdown-card .map-link { margin-top:2px; padding:7px 11px; font-size:.67rem; }
+      .countdown-card .replay { margin-top:2px; }
+    }
   </style>
 </head>
 <body>
@@ -425,22 +485,20 @@
     <div class="grain" aria-hidden="true"></div>
     <div class="sparkle-field" aria-hidden="true"><i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i></div>
     <section class="intro" aria-label="Abrir invitación">
-      <div class="butterfly-field" aria-hidden="true"><span class="butterfly"><i></i></span><span class="butterfly"><i></i></span><span class="butterfly"><i></i></span><span class="butterfly"><i></i></span></div>
-      <div class="intro-heading"><div class="eyebrow">Una invitación especial</div><span>Hay momentos que merecen celebrarse…</span></div>
       <button class="envelope-button" id="openButton" type="button" aria-label="Abrir invitación de los quince años de Valeria">
         <span class="envelope">
           <span class="envelope-back"></span>
           <span class="envelope-front">
             <span class="letter"><span class="letter-inner"><small>Mis quince años</small><strong>Valeria</strong><em>20 · 11 · 2026</em></span></span>
             <span class="side-fold"></span><span class="front-fold"></span><span class="flap"></span>
-            <span class="envelope-title">Para ti, con cariño</span><span class="seal">V</span>
+            <img class="envelope-art" src="assets/intro-white-envelope.png" alt="" aria-hidden="true">
+            <span class="envelope-date">20 · 11 · 2026</span><span class="envelope-title" aria-label="Te quiero conmigo en mis quince"><img src="assets/intro-calligraphy.png" alt="" aria-hidden="true"></span><span class="seal"><img src="assets/intro-wax-v.png" alt="" aria-hidden="true"></span>
           </span>
         </span>
         <svg class="ribbon ribbon-a" viewBox="0 0 150 150" aria-hidden="true"><defs><linearGradient id="ribbonGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdfb"/><stop offset=".48" stop-color="#ffe4e2"/><stop offset="1" stop-color="#ffb9bd"/></linearGradient></defs><path d="M70 78C49 65 20 48 12 23 42 17 64 30 78 66c-7-36 9-56 37-60 15 26 2 53-24 70" fill="url(#ribbonGradient)" stroke="#fff" stroke-width="2"/><path d="M64 79 43 141l30-16 13 19 7-66M85 79l26 60-4-37 27 5-30-37" fill="url(#ribbonGradient)" stroke="#fff5f3" stroke-width="2"/><ellipse cx="78" cy="75" rx="18" ry="12" fill="#ffdcda" stroke="#fff" stroke-width="2"/><path d="M63 75c6 4 18 5 30 0" stroke="#fff" fill="none"/></svg>
         <svg class="ribbon ribbon-b" viewBox="0 0 150 150" aria-hidden="true"><path d="M70 78C49 65 20 48 12 23 42 17 64 30 78 66c-7-36 9-56 37-60 15 26 2 53-24 70" fill="url(#ribbonGradient)" stroke="#fff" stroke-width="2"/><path d="M64 79 43 141l30-16 13 19 7-66M85 79l26 60-4-37 27 5-30-37" fill="url(#ribbonGradient)" stroke="#fff5f3" stroke-width="2"/><ellipse cx="78" cy="75" rx="18" ry="12" fill="#ffdcda" stroke="#fff" stroke-width="2"/></svg>
         <span class="open-hint">Toca para abrir</span>
       </button>
-      <p class="intro-caption">La magia de una nueva etapa está por comenzar</p>
     </section>
 
     <section class="story" id="story" aria-label="Invitación animada" aria-hidden="true"><div class="red-waves" aria-hidden="true"></div>
@@ -476,15 +534,24 @@
         </article>
         <article class="scene scene-card ending photo-feature" aria-label="Mensaje final" data-theme="red" data-fireworks="true">
           <div class="fireworks" aria-hidden="true"></div><div class="portrait-stage portrait-left" aria-hidden="true"><img class="portrait-photo" data-photo="bouquet" alt=""></div><div class="invitation-card card-ending"><img class="card-art" data-art="confetti" alt="" aria-hidden="true"><span class="portrait-cameo" aria-hidden="true"><img class="portrait-photo" data-photo="bouquet" alt=""></span><div class="card-copy">
-            <p class="card-overline reveal">Será una noche inolvidable</p><h2 class="card-gold reveal">¡Te espero!</h2><p class="card-note reveal">Tu presencia hará aún más especial la celebración de mis quince años.</p><p class="card-signature reveal">Con cariño, Valeria</p><button class="replay reveal" id="replayButton" type="button">Ver de nuevo ↺</button>
+            <p class="card-overline reveal">Será una noche inolvidable</p><h2 class="card-gold reveal">¡Te espero!</h2><p class="card-note reveal">Tu presencia hará aún más especial la celebración de mis quince años.</p><p class="card-signature reveal">Con cariño, Valeria</p>
+          </div></div>
+        </article>
+        <article class="scene scene-card" aria-label="Cuenta regresiva para la celebración" data-theme="red">
+          <div class="invitation-card countdown-card"><img class="card-art" data-art="confetti" alt="" aria-hidden="true"><div class="card-copy">
+            <p class="card-overline reveal">Falta muy poco</p><h2 class="card-script reveal">Cuenta regresiva</h2>
+            <div class="countdown-grid reveal" id="countdown" role="timer" aria-label="Tiempo restante hasta el 20 de noviembre de 2026 a las 7 de la noche"><span><strong id="days">00</strong><small>días</small></span><span><strong id="hours">00</strong><small>horas</small></span><span><strong id="minutes">00</strong><small>minutos</small></span><span><strong id="seconds">00</strong><small>segundos</small></span></div>
+            <p class="card-note reveal">20 de noviembre de 2026 · 7:00 p. m.<br>Local de Recepción Hollywood</p>
+            <a class="map-link reveal" href="https://www.google.com/maps/search/?api=1&amp;query=Local%20de%20Recepci%C3%B3n%20Hollywood" target="_blank" rel="noopener noreferrer">Buscar local en Google Maps ↗</a>
+            <button class="replay reveal" id="replayButton" type="button">Ver de nuevo ↺</button>
           </div></div>
         </article>
       </div>
-      <nav class="story-controls" aria-label="Controles de la invitación"><span class="story-label" id="storyLabel">01 / 06</span><button class="music-toggle" id="musicToggle" type="button" aria-label="Silenciar música" aria-pressed="true">♫ Música</button><button class="play-toggle" id="playToggle" type="button" aria-label="Pausar presentación">Pausar</button><button class="control" id="previousButton" type="button" aria-label="Escena anterior">‹</button><div class="timeline" id="timeline" aria-label="Escenas de la invitación"></div><button class="control" id="nextButton" type="button" aria-label="Siguiente escena">›</button></nav>
+      <nav class="story-controls" aria-label="Controles de la invitación"><span class="story-label" id="storyLabel">01 / 07</span><button class="music-toggle" id="musicToggle" type="button" aria-label="Silenciar música" aria-pressed="true">♫ Música</button><button class="play-toggle" id="playToggle" type="button" aria-label="Pausar presentación">Pausar</button><button class="control" id="previousButton" type="button" aria-label="Escena anterior">‹</button><div class="timeline" id="timeline" aria-label="Escenas de la invitación"></div><button class="control" id="nextButton" type="button" aria-label="Siguiente escena">›</button></nav>
       <div class="sr-only" id="announcement" aria-live="polite"></div>
     </section>
   </main>
-  <audio id="backgroundMusic" src="1660%20.%20DISCO%20INFERNO%20-%20THE%20TRAMPS.mp3" preload="none" loop></audio>
+  <audio id="backgroundMusic" src="musica%20de%20fondo.mp4" preload="none" loop></audio>
   <noscript>Valeria Thais Aitana Camargo Cordova te invita a celebrar sus quince años el 20 de noviembre de 2026 a las 7:00 p. m. en el Local de Recepción Hollywood.</noscript>
   <script>
     (() => {
@@ -558,6 +625,15 @@
       const duration = reducedMotion ? 10000 : 7500;
       const MUSIC_START_SECONDS = 0;
       music.volume = .55;
+      const eventTime = new Date('2026-11-20T19:00:00-05:00').getTime();
+      function updateCountdown() {
+        const total = Math.max(0, Math.floor((eventTime - Date.now()) / 1000));
+        const values = [Math.floor(total / 86400), Math.floor(total / 3600) % 24, Math.floor(total / 60) % 60, total % 60];
+        ['days','hours','minutes','seconds'].forEach((id, index) => { document.getElementById(id).textContent = String(values[index]).padStart(2, '0'); });
+        if (total === 0) document.getElementById('countdown').setAttribute('aria-label', 'Llegó el día de la celebración');
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
       const segments = scenes.map((_, index) => {
         const button = document.createElement('button');
         button.className = 'segment';
@@ -583,9 +659,8 @@
         musicToggle.setAttribute('aria-pressed', String(musicEnabled));
       }
       function syncMusic() {
-        if (!musicEnabled || current === 0 || !playing || document.hidden || !app.classList.contains('story-on')) {
+        if (!musicEnabled || !opened || !playing || document.hidden) {
           music.pause();
-          if (current === 0 && music.currentTime !== MUSIC_START_SECONDS) music.currentTime = MUSIC_START_SECONDS;
           return;
         }
         if (music.paused) music.play().catch(() => { musicEnabled = false; updateMusicButton(); });
@@ -688,10 +763,12 @@
       document.getElementById('openButton').addEventListener('click', () => {
         if (opened) return;
         opened = true;
+        music.currentTime = MUSIC_START_SECONDS;
+        syncMusic();
         app.classList.add('turning');
         setTimeout(() => { app.classList.remove('turning'); app.classList.add('returning'); }, reducedMotion ? 25 : 760);
         setTimeout(() => app.classList.add('opened'), reducedMotion ? 50 : 1480);
-        setTimeout(startStory, reducedMotion ? 120 : 3100);
+        setTimeout(startStory, reducedMotion ? 120 : 4500);
       });
       previousButton.addEventListener('click', () => showScene(current - 1));
       nextButton.addEventListener('click', () => showScene(current + 1));
